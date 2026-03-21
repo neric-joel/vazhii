@@ -4,10 +4,17 @@ import { DashboardView } from '../components/dashboard/DashboardView';
 
 interface DashboardPageProps {
   result: AssessmentResult | null;
+  isDemo?: boolean;
+  onStartOver?: () => void;
 }
 
-export default function Dashboard({ result }: DashboardPageProps) {
+export default function Dashboard({ result, isDemo = false, onStartOver }: DashboardPageProps) {
   const navigate = useNavigate();
+
+  const handleStartOver = () => {
+    if (onStartOver) onStartOver();
+    navigate('/');
+  };
 
   if (!result) {
     return (
@@ -32,7 +39,8 @@ export default function Dashboard({ result }: DashboardPageProps) {
   return (
     <DashboardView
       result={result}
-      onStartOver={() => navigate('/')}
+      onStartOver={handleStartOver}
+      isDemo={isDemo}
     />
   );
 }

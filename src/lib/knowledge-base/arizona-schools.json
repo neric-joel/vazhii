@@ -1,0 +1,329 @@
+{
+  "last_updated": "2026-03-21",
+  "note": "Tuition figures are estimates for 2025-2026. Verify current rates at each school's official tuition page.",
+  "schools": [
+    {
+      "id": "asu",
+      "name": "Arizona State University",
+      "type": "university",
+      "location": {
+        "city": "Tempe",
+        "area": "East Valley / Phoenix Metro",
+        "transit_accessible": true,
+        "transit_note": "Valley Metro Light Rail stops at Rural/Apache near Tempe campus"
+      },
+      "tuition": {
+        "annual_in_state_ft": 11822,
+        "mandatory_fees": 588,
+        "tuition_url": "https://students.asu.edu/tuition"
+      },
+      "foster_support": {
+        "program_name": "ASU Foster Youth Programs",
+        "has_dedicated_program": true,
+        "has_campus_champion": true,
+        "contact": "Foster Youth Programs office: fosteryouth.asu.edu | UCENT 240, Tempe campus",
+        "program_url": "https://fosteryouth.asu.edu/",
+        "services": [
+          "Dedicated foster youth advisor",
+          "Tuition waiver coordination",
+          "ETV application assistance",
+          "Priority registration",
+          "Emergency funds",
+          "Food pantry access",
+          "Housing support",
+          "Textbook lending"
+        ]
+      },
+      "housing": {
+        "on_campus_available": true,
+        "on_campus_annual": 13200,
+        "avg_nearby_rent_monthly": 1100,
+        "housing_range_low": 900,
+        "housing_range_high": 1300
+      },
+      "scholarships": [
+        {
+          "name": "ASU Foster Youth Grant",
+          "amount": 1000,
+          "foster_specific": true,
+          "notes": "Supplemental institutional support — verify current availability at fosteryouth.asu.edu"
+        }
+      ],
+      "online_options": true,
+      "online_note": "ASU Online offers 300+ degree programs fully online at the same tuition rate",
+      "degree_paths": [
+        "Business", "Education", "Engineering", "Nursing", "Psychology",
+        "Social Work", "Computer Science", "Criminal Justice", "Health Sciences",
+        "Liberal Arts", "Communications", "Public Service & Community Solutions"
+      ]
+    },
+    {
+      "id": "u_of_a",
+      "name": "University of Arizona",
+      "type": "university",
+      "location": {
+        "city": "Tucson",
+        "area": "Tucson",
+        "transit_accessible": true,
+        "transit_note": "Sun Tran bus routes serve campus directly"
+      },
+      "tuition": {
+        "annual_in_state_ft": 12467,
+        "mandatory_fees": 972,
+        "tuition_url": "https://bursar.arizona.edu/students/tuition-fees"
+      },
+      "foster_support": {
+        "program_name": "Foster Youth Initiatives",
+        "has_dedicated_program": true,
+        "has_campus_champion": true,
+        "contact": "Foster Youth Initiatives: fyi.arizona.edu | Dean of Students Office",
+        "program_url": "https://fyi.arizona.edu/",
+        "services": [
+          "Foster youth coordinator",
+          "Tuition waiver processing",
+          "ETV assistance",
+          "Counseling services",
+          "Basic needs support",
+          "Peer mentoring",
+          "Career advising"
+        ]
+      },
+      "housing": {
+        "on_campus_available": true,
+        "on_campus_annual": 11400,
+        "avg_nearby_rent_monthly": 950,
+        "housing_range_low": 750,
+        "housing_range_high": 1200
+      },
+      "scholarships": [
+        {
+          "name": "Arizona Assurance Scholarship",
+          "amount": 2000,
+          "foster_specific": false,
+          "notes": "Need-based scholarship available to low-income students including foster youth"
+        }
+      ],
+      "online_options": true,
+      "online_note": "UA Online offers degrees in education, public administration, and more",
+      "degree_paths": [
+        "Business", "Education", "Engineering", "Medicine / Pre-Med", "Nursing",
+        "Psychology", "Social Work", "Law (pre-law)", "Public Health",
+        "Fine Arts", "Agriculture", "Science"
+      ]
+    },
+    {
+      "id": "nau",
+      "name": "Northern Arizona University",
+      "type": "university",
+      "location": {
+        "city": "Flagstaff",
+        "area": "Flagstaff / Northern Arizona",
+        "transit_accessible": true,
+        "transit_note": "Mountain Line bus serves campus and downtown Flagstaff"
+      },
+      "tuition": {
+        "annual_in_state_ft": 12296,
+        "mandatory_fees": 400,
+        "tuition_url": "https://nau.edu/sbs/bursar/tuition-fees/"
+      },
+      "foster_support": {
+        "program_name": "Foster Youth Support Services",
+        "has_dedicated_program": true,
+        "has_campus_champion": false,
+        "contact": "Student Affairs: nau.edu/student-life | 928-523-5181",
+        "program_url": "https://nau.edu/student-life/",
+        "services": [
+          "Financial aid coordination",
+          "Tuition waiver processing",
+          "Counseling referrals",
+          "Food pantry",
+          "Emergency funds"
+        ]
+      },
+      "housing": {
+        "on_campus_available": true,
+        "on_campus_annual": 10800,
+        "avg_nearby_rent_monthly": 850,
+        "housing_range_low": 700,
+        "housing_range_high": 1050
+      },
+      "scholarships": [
+        {
+          "name": "NAU Pledge",
+          "amount": 0,
+          "foster_specific": false,
+          "notes": "NAU pledges to meet full demonstrated need for low-income Arizona residents — verify with financial aid"
+        }
+      ],
+      "online_options": true,
+      "online_note": "NAU offers fully online degrees through e-Learning at lower tuition rates",
+      "degree_paths": [
+        "Education", "Business", "Engineering", "Forestry / Environmental Science",
+        "Health Sciences", "Psychology", "Criminal Justice", "Hotel & Restaurant Management",
+        "Computer Science", "Nursing", "Social Work"
+      ]
+    },
+    {
+      "id": "mesa_cc",
+      "name": "Mesa Community College",
+      "type": "community_college",
+      "location": {
+        "city": "Mesa",
+        "area": "East Valley",
+        "transit_accessible": true,
+        "transit_note": "Valley Metro Light Rail — Main St/Mesa Dr station is adjacent to campus"
+      },
+      "tuition": {
+        "annual_in_state_ft": 2610,
+        "mandatory_fees": 240,
+        "tuition_url": "https://www.mesacc.edu/paying-for-college/tuition-fees"
+      },
+      "foster_support": {
+        "program_name": "Bridging Success Program",
+        "has_dedicated_program": true,
+        "has_campus_champion": true,
+        "contact": "Bridging Success Champion at Mesa CC: mesacc.edu/bridging-success",
+        "program_url": "https://www.maricopa.edu/students/student-support/foster-youth",
+        "services": [
+          "Dedicated campus champion",
+          "Tutoring",
+          "Mentoring",
+          "Basic needs assistance",
+          "Career exploration",
+          "Transfer planning to ASU/U of A/NAU",
+          "Emergency funds",
+          "Textbook support"
+        ]
+      },
+      "housing": {
+        "on_campus_available": false,
+        "on_campus_annual": null,
+        "avg_nearby_rent_monthly": 950,
+        "housing_range_low": 800,
+        "housing_range_high": 1100
+      },
+      "scholarships": [
+        {
+          "name": "Maricopa Foster Youth Scholarship",
+          "amount": 500,
+          "foster_specific": true,
+          "notes": "Available through Maricopa Community College Foundation — apply each semester"
+        }
+      ],
+      "online_options": true,
+      "online_note": "Extensive online course catalog; many degrees fully achievable online",
+      "degree_paths": [
+        "General Studies (transfer track)", "Business", "Computer Information Systems",
+        "Early Childhood Education", "Criminal Justice", "Health Sciences",
+        "Nursing (RN)", "Welding / Trades", "Graphic Design", "Accounting"
+      ]
+    },
+    {
+      "id": "phoenix_college",
+      "name": "Phoenix College",
+      "type": "community_college",
+      "location": {
+        "city": "Phoenix",
+        "area": "Central Phoenix",
+        "transit_accessible": true,
+        "transit_note": "19th Ave/Camelback Light Rail station — highly transit accessible"
+      },
+      "tuition": {
+        "annual_in_state_ft": 2610,
+        "mandatory_fees": 240,
+        "tuition_url": "https://www.phoenixcollege.edu/paying-for-college"
+      },
+      "foster_support": {
+        "program_name": "Bridging Success Program",
+        "has_dedicated_program": true,
+        "has_campus_champion": true,
+        "contact": "Bridging Success Champion at Phoenix College: phoenixcollege.edu",
+        "program_url": "https://www.maricopa.edu/students/student-support/foster-youth",
+        "services": [
+          "Dedicated campus champion",
+          "Tutoring and academic support",
+          "Mentoring",
+          "Basic needs assistance",
+          "Career exploration",
+          "Transfer planning",
+          "Emergency funds"
+        ]
+      },
+      "housing": {
+        "on_campus_available": false,
+        "on_campus_annual": null,
+        "avg_nearby_rent_monthly": 1000,
+        "housing_range_low": 800,
+        "housing_range_high": 1200
+      },
+      "scholarships": [
+        {
+          "name": "Maricopa Foster Youth Scholarship",
+          "amount": 500,
+          "foster_specific": true,
+          "notes": "Available through Maricopa Community College Foundation"
+        }
+      ],
+      "online_options": true,
+      "online_note": "Hybrid and fully online options available across most programs",
+      "degree_paths": [
+        "General Studies (transfer track)", "Business", "Dental Hygiene",
+        "Health Information Technology", "Medical Assisting", "Radiologic Technology",
+        "Computer Information Systems", "Early Childhood Education", "Criminal Justice"
+      ]
+    },
+    {
+      "id": "chandler_gilbert_cc",
+      "name": "Chandler-Gilbert Community College",
+      "type": "community_college",
+      "location": {
+        "city": "Chandler",
+        "area": "Southeast Valley",
+        "transit_accessible": false,
+        "transit_note": "Limited transit access — personal transportation helpful; some routes available"
+      },
+      "tuition": {
+        "annual_in_state_ft": 2610,
+        "mandatory_fees": 240,
+        "tuition_url": "https://www.cgc.edu/paying-for-college"
+      },
+      "foster_support": {
+        "program_name": "Bridging Success Program",
+        "has_dedicated_program": true,
+        "has_campus_champion": true,
+        "contact": "Bridging Success Champion at CGCC: cgc.edu | Student Services",
+        "program_url": "https://www.maricopa.edu/students/student-support/foster-youth",
+        "services": [
+          "Dedicated campus champion",
+          "Tutoring",
+          "Mentoring",
+          "Basic needs assistance",
+          "Career exploration",
+          "Transfer planning to 4-year universities"
+        ]
+      },
+      "housing": {
+        "on_campus_available": false,
+        "on_campus_annual": null,
+        "avg_nearby_rent_monthly": 1050,
+        "housing_range_low": 850,
+        "housing_range_high": 1250
+      },
+      "scholarships": [
+        {
+          "name": "Maricopa Foster Youth Scholarship",
+          "amount": 500,
+          "foster_specific": true,
+          "notes": "Available through Maricopa Community College Foundation"
+        }
+      ],
+      "online_options": true,
+      "online_note": "Strong online offerings; popular for students balancing work and school",
+      "degree_paths": [
+        "General Studies (transfer track)", "Business", "Computer Information Systems",
+        "Education", "Criminal Justice", "Health Sciences",
+        "Culinary Arts", "Aviation / Aerospace", "Engineering (transfer)"
+      ]
+    }
+  ]
+}

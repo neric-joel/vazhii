@@ -1,3 +1,4 @@
+// ─── Intake ───────────────────────────────────────────────────────────────────
 export interface IntakeFormData {
   age: number;
   state: string;
@@ -7,6 +8,7 @@ export interface IntakeFormData {
   benefitsApplied: string[];
 }
 
+// ─── Readiness ────────────────────────────────────────────────────────────────
 export interface ReadinessScore {
   overall: number;
   academic: { score: number; summary: string };
@@ -16,6 +18,7 @@ export interface ReadinessScore {
   overall_summary: string;
 }
 
+// ─── Financial Aid ────────────────────────────────────────────────────────────
 export interface MatchedProgram {
   id: string;
   name: string;
@@ -30,21 +33,97 @@ export interface MatchedProgram {
   verify_with: string;
 }
 
+// ─── School Matching (V2) ─────────────────────────────────────────────────────
+export interface CostBreakdown {
+  annual_tuition: number;
+  pell_grant_applied: number;
+  tuition_after_waiver: number;
+  mandatory_fees: number;
+  books_supplies: number;
+  housing_estimate: number;
+  transportation: number;
+  personal: number;
+  total_cost_of_attendance: number;
+  etv_applied: number;
+  other_scholarships: number;
+  estimated_out_of_pocket: number;
+  cost_note: string;
+}
+
+export interface FosterSupport {
+  program_name: string;
+  has_champion: boolean;
+  contact: string;
+  program_url: string;
+  services: string[];
+}
+
+export interface HousingOptions {
+  on_campus_available: boolean;
+  on_campus_cost: number | null;
+  avg_nearby_rent: number;
+  housing_note: string;
+}
+
+export interface SchoolMatch {
+  id: string;
+  name: string;
+  type: 'community_college' | 'university';
+  fit_score: number;
+  fit_label: 'Strong match' | 'Good match' | 'Worth exploring';
+  fit_reasons: string[];
+  cost_breakdown: CostBreakdown;
+  foster_support: FosterSupport;
+  housing_options: HousingOptions;
+  why_this_school: string;
+  source_urls: string[];
+}
+
+// ─── Semester Roadmap (V2) ────────────────────────────────────────────────────
+export interface RoadmapTask {
+  task: string;
+  why: string;
+  deadline: string | null;
+  depends_on: string[] | null;
+  estimated_time: string;
+  help_from: string;
+  category: 'financial' | 'academic' | 'housing' | 'administrative' | 'support';
+}
+
+export interface RoadmapPhase {
+  name: string;
+  phase_type: 'preparation' | 'active_semester' | 'summer' | 'graduation';
+  tasks: RoadmapTask[];
+  semester_cost_estimate: number | null;
+  funding_applied: string;
+}
+
+export interface SemesterRoadmap {
+  recommended_start: string;
+  total_semesters_to_degree: number;
+  based_on_school: string;
+  phases: RoadmapPhase[];
+}
+
+// ─── Action Plan (V2) ─────────────────────────────────────────────────────────
 export interface ActionStep {
   step_number: number;
   title: string;
   why_this_is_next: string;
   deadline: string | null;
   days_until_deadline: number | null;
-  documents_needed: Array<{ name: string; status: 'have' | 'need'; how_to_get: string }>;
+  urgency_note: string | null;
+  documents_needed: Array<{ name: string; status: 'have' | 'need'; how_to_get?: string }>;
   specific_action: string;
   where_to_go: string;
   what_to_bring: string;
+  estimated_time: string;
   confidence: 'certain' | 'high' | 'verify';
   verify_with: string;
   source_url: string;
 }
 
+// ─── Score Deltas ─────────────────────────────────────────────────────────────
 export interface ScoreDelta {
   academic: number;
   financial_aid: number;
@@ -54,10 +133,14 @@ export interface ScoreDelta {
   unlocks: number[];
 }
 
+// ─── Full Assessment Result (V2) ──────────────────────────────────────────────
 export interface AssessmentResult {
   readiness: ReadinessScore;
   matched_programs: MatchedProgram[];
+  school_matches: SchoolMatch[];
+  other_options_note: string;
   action_plan: ActionStep[];
+  semester_roadmap: SemesterRoadmap;
   score_deltas: Record<number, ScoreDelta>;
   key_insight: string;
 }

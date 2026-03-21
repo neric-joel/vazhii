@@ -1,7 +1,11 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 
-export default function Home() {
+interface HomeProps {
+  onDemo?: () => void;
+}
+
+export default function Home({ onDemo }: HomeProps) {
   const navigate = useNavigate();
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -89,16 +93,27 @@ export default function Home() {
             Foster youth in Arizona — discover your funding,<br className="hidden md:block" />
             build your plan, find your way.
           </p>
-          <button
-            onClick={() => navigate('/intake')}
-            className="animate-fade-in-up bg-[#BA7517] hover:bg-[#9a6012] active:bg-[#7d4e0f]
-                       text-white text-lg font-semibold px-10 py-4 rounded-full
-                       shadow-xl hover:shadow-2xl hover:-translate-y-0.5
-                       transition-all duration-200 min-h-[52px]"
-            style={{ animationDelay: '0.55s', opacity: 0 }}
-          >
-            Get My Plan →
-          </button>
+          <div className="flex flex-col sm:flex-row items-center gap-3 justify-center animate-fade-in-up"
+            style={{ animationDelay: '0.55s', opacity: 0 }}>
+            <button
+              onClick={() => navigate('/intake')}
+              className="bg-[#BA7517] hover:bg-[#9a6012] active:bg-[#7d4e0f]
+                         text-white text-lg font-semibold px-10 py-4 rounded-full
+                         shadow-xl hover:shadow-2xl hover:-translate-y-0.5
+                         transition-all duration-200 min-h-[52px] w-full sm:w-auto"
+            >
+              Get My Plan →
+            </button>
+            <button
+              onClick={() => { if (onDemo) { onDemo(); navigate('/dashboard'); } }}
+              className="bg-white/10 hover:bg-white/20 border border-white/30
+                         text-white/90 text-base font-medium px-8 py-4 rounded-full
+                         backdrop-blur-sm hover:-translate-y-0.5
+                         transition-all duration-200 min-h-[52px] w-full sm:w-auto"
+            >
+              Try Demo
+            </button>
+          </div>
 
           {/* Privacy note */}
           <p className="text-white/40 text-xs mt-5 animate-fade-in-up"

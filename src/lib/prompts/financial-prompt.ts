@@ -6,6 +6,7 @@ import {
   SAFEGUARD_5,
   SAFEGUARD_7_8,
   LANGUAGE_RULES,
+  PLANNED_START_RULES,
 } from './prompt-base';
 
 /**
@@ -35,6 +36,10 @@ ARIZONA PROGRAM DATABASE
 ${JSON.stringify(arizonaData, null, 2)}
 
 Today's date: ${new Date().toISOString().split('T')[0]}
+
+${PLANNED_START_RULES}
+
+DEADLINE RULE: days_until_deadline should be calculated relative to TODAY for approaching deadlines, but urgency framing must account for planned_start. If a deadline falls BEFORE the user's planned_start semester, it is critical. If it falls well after, it is lower urgency.
 
 ═══════════════════════════════════════════════════════════
 YOUR TASK

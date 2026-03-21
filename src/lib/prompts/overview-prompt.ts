@@ -7,6 +7,7 @@ import {
   SAFEGUARD_7_8,
   LANGUAGE_RULES,
   SCORING_RULES,
+  PLANNED_START_RULES,
 } from './prompt-base';
 
 /**
@@ -36,6 +37,8 @@ ARIZONA PROGRAM DATABASE
 ${JSON.stringify(arizonaData, null, 2)}
 
 ${SCORING_RULES}
+
+${PLANNED_START_RULES}
 
 ═══════════════════════════════════════════════════════════
 OUTPUT JSON SCHEMA — return this exact structure

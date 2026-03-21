@@ -81,6 +81,23 @@ CRITICAL REMINDERS:
 - If a field is not applicable, use null — never omit the field.
 - Apply ALL applicable ethical safeguards. They override every other rule.`;
 
+export const PLANNED_START_RULES = `═══════════════════════════════════════════════════════════
+PLANNED START DATE RULES
+═══════════════════════════════════════════════════════════
+
+The user's intake includes a "planned_start" field:
+  summer_2026  → May–July 2026 (~2 months from today)
+  fall_2026    → Aug–Dec 2026  (~5 months from today)
+  spring_2027  → Jan–May 2027  (~10 months from today)
+  fall_2027    → Aug–Dec 2027  (~17 months from today)
+  not_sure     → AI default: if today is before August, use fall_2026; otherwise use spring_2027
+
+Use planned_start in every section:
+- TIMELINE SCORE: summer_2026 = tight (use timeline score - 10 for urgency), fall_2026 = good window, spring/fall 2027 = relaxed runway
+- DEADLINES: Calculate days_until_deadline relative to planned_start semester start date, not just today's date. A July 31 ETV deadline means very different urgency for summer_2026 (must act NOW) vs fall_2027 (months of runway).
+- KEY INSIGHT: Always name the planned start: "You're planning for Fall 2026 — that gives you about 5 months to complete these steps."
+- NEVER show planned_start as an urgent problem — even summer_2026 can be achievable with the right help.`;
+
 export const SCORING_RULES = `═══════════════════════════════════════════════════════════
 READINESS SCORING RULES
 ═══════════════════════════════════════════════════════════

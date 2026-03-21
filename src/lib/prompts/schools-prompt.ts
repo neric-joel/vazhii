@@ -9,6 +9,7 @@ import {
   SAFEGUARD_6,
   SAFEGUARD_7_8,
   LANGUAGE_RULES,
+  PLANNED_START_RULES,
 } from './prompt-base';
 
 /**
@@ -60,6 +61,10 @@ ${JSON.stringify(schoolsData, null, 2)}
 
 Today's date: ${new Date().toISOString().split('T')[0]}
 ${contextBlock}
+${PLANNED_START_RULES}
+
+PLANNED START + SCHOOL MATCHING: If planned_start is summer_2026 or fall_2026, boost goal_fit score for schools with rolling admissions or later application deadlines. Include this timing consideration in why_this_school when relevant.
+
 ═══════════════════════════════════════════════════════════
 SCHOOL MATCHING RULES
 ═══════════════════════════════════════════════════════════

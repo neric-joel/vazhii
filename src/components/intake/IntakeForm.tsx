@@ -19,7 +19,8 @@ const EMPTY_FORM: IntakeFormData = {
   age: 0,
   state: 'Arizona',
   educationGoal: '',
-  timeline: '' as IntakeFormData['timeline'], // No pre-selection — user must choose
+  timeline: '' as IntakeFormData['timeline'],
+  planned_start: '' as IntakeFormData['planned_start'],
   documents: [],
   benefitsApplied: [],
 };
@@ -28,7 +29,7 @@ function canAdvance(step: number, data: IntakeFormData): boolean {
   switch (step) {
     case 1: return data.age >= 14 && data.age <= 30 && data.state !== '';
     case 2: return data.educationGoal !== '';
-    case 3: return (data.timeline as string) !== '';
+    case 3: return (data.timeline as string) !== '' && (data.planned_start as string) !== '';
     case 4: return true; // documents are optional
     case 5: return true; // benefits are optional
     case 6: return true;
@@ -89,8 +90,10 @@ export function IntakeForm({ onComplete }: IntakeFormProps) {
 
           {step === 3 && (
             <TimelineField
-              value={formData.timeline}
-              onChange={timeline => setFormData(d => ({ ...d, timeline }))}
+              timeline={formData.timeline}
+              plannedStart={formData.planned_start}
+              onTimelineChange={timeline => setFormData(d => ({ ...d, timeline }))}
+              onPlannedStartChange={planned_start => setFormData(d => ({ ...d, planned_start }))}
             />
           )}
 

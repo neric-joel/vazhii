@@ -4,6 +4,7 @@ export interface IntakeFormData {
   state: string;
   educationGoal: string;
   timeline: 'still_in_care' | 'just_aged_out' | '3_12_months' | 'over_a_year';
+  planned_start: 'summer_2026' | 'fall_2026' | 'spring_2027' | 'fall_2027' | 'not_sure';
   documents: string[];
   benefitsApplied: string[];
 }

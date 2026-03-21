@@ -8,6 +8,7 @@ import {
   SAFEGUARD_7_8,
   LANGUAGE_RULES,
   SCORING_RULES,
+  PLANNED_START_RULES,
 } from './prompt-base';
 
 /**
@@ -52,6 +53,13 @@ ${JSON.stringify(arizonaData, null, 2)}
 Today's date: ${new Date().toISOString().split('T')[0]}
 ${contextBlock}
 ${SCORING_RULES}
+
+${PLANNED_START_RULES}
+
+TIME-BUCKET RULE: Use planned_start to sort steps into urgency buckets. Label each step's why_this_is_next with a time reference:
+- "Do this week" / "Do this month" / "Do in the next 3 months" / "Before [planned_start] enrollment"
+- If planned_start is summer_2026 (only ~2 months away): front-load ALL document steps as "Do this week"
+- If planned_start is fall_2027 (17+ months away): spread steps out across realistic monthly buckets — don't create false urgency
 
 ═══════════════════════════════════════════════════════════
 ACTION PLAN DEPENDENCY RULES

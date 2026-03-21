@@ -20,6 +20,14 @@ const TIMELINE_LABELS: Record<string, string> = {
   over_a_year: 'Over a year ago',
 };
 
+const PLANNED_START_LABELS: Record<string, string> = {
+  summer_2026: 'Summer 2026',
+  fall_2026: 'Fall 2026',
+  spring_2027: 'Spring 2027',
+  fall_2027: 'Fall 2027',
+  not_sure: 'Not sure yet',
+};
+
 const DOC_LABELS: Record<string, string> = {
   state_id: 'State ID / License',
   social_security_card: 'Social Security Card',
@@ -79,7 +87,8 @@ export function IntakeReview({ data, onEdit }: IntakeReviewProps) {
       <div className="bg-white rounded-2xl border border-[#E2DED6] px-5 py-1 shadow-sm">
         <ReviewRow label="Age & State" value={`${data.age} years old · ${data.state}`} onEdit={onEdit} step={1} />
         <ReviewRow label="Education Goal" value={GOAL_LABELS[data.educationGoal] ?? data.educationGoal} onEdit={onEdit} step={2} />
-        <ReviewRow label="Timeline" value={TIMELINE_LABELS[data.timeline] ?? data.timeline} onEdit={onEdit} step={3} />
+        <ReviewRow label="Left care" value={TIMELINE_LABELS[data.timeline] ?? data.timeline} onEdit={onEdit} step={3} />
+        <ReviewRow label="Planned start" value={PLANNED_START_LABELS[data.planned_start] ?? data.planned_start} onEdit={onEdit} step={3} />
         <ReviewRow label="Documents I have" value={docsList} onEdit={onEdit} step={4} />
         <ReviewRow label="Already applied for" value={benefitsList} onEdit={onEdit} step={5} />
       </div>

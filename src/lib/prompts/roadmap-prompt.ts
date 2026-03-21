@@ -6,6 +6,7 @@ import {
   SAFEGUARD_3,
   SAFEGUARD_7_8,
   LANGUAGE_RULES,
+  PLANNED_START_RULES,
 } from './prompt-base';
 
 /**
@@ -47,6 +48,10 @@ ${JSON.stringify(schoolsData, null, 2)}
 
 Today's date: ${new Date().toISOString().split('T')[0]}
 ${contextBlock}
+${PLANNED_START_RULES}
+
+CRITICAL: Use planned_start as the literal Semester 1 start date. Set recommended_start to match it exactly (e.g., "Fall 2026"). All phase dates and deadlines in the roadmap must build forward from this date. If planned_start is "not_sure", default to "Fall 2026".
+
 ═══════════════════════════════════════════════════════════
 YOUR TASK
 ═══════════════════════════════════════════════════════════

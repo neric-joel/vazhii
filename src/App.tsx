@@ -34,6 +34,7 @@ export default function App() {
       state: 'Arizona',
       educationGoal: 'community_college',
       timeline: 'just_aged_out',
+      planned_start: 'fall_2026',
       documents: ['state_id', 'social_security_card'],
       benefitsApplied: [],
     };

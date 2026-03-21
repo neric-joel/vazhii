@@ -9,13 +9,19 @@ const MAX_RETRIES = 2;
 
 // ─── Core API Call ──────────────────────────────────────────────────────────
 
+const FETCH_TIMEOUT_MS = 30_000; // 30s per attempt
+
 async function fetchWithRetry(
   intakeData: IntakeFormData,
   attempt: number = 0
 ): Promise<string> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+
   try {
     const response = await fetch(API_URL, {
       method: 'POST',
+      signal: controller.signal,
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': import.meta.env.VITE_CLAUDE_API_KEY,
@@ -30,6 +36,8 @@ async function fetchWithRetry(
       }),
     });
 
+    clearTimeout(timeoutId);
+
     if (!response.ok) {
       const errorBody = await response.text();
       throw new Error(`Claude API error ${response.status}: ${errorBody}`);
@@ -38,6 +46,7 @@ async function fetchWithRetry(
     const data = await response.json();
     return data.content[0].text as string;
   } catch (error) {
+    clearTimeout(timeoutId);
     if (attempt < MAX_RETRIES) {
       const delay = Math.pow(2, attempt) * 1000; // 1s, 2s
       await new Promise(resolve => setTimeout(resolve, delay));

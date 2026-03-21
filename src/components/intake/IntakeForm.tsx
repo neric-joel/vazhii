@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { IntakeFormData, AssessmentResult } from '../../lib/types';
-import { callClaudeAPI } from '../../lib/claude';
+import { callClaudeAPI, DEMO_RESULT } from '../../lib/claude';
 import { StepIndicator } from './StepIndicator';
 import { AgeStateField } from './fields/AgeStateField';
 import { EducationGoalField } from './fields/EducationGoalField';
@@ -43,6 +43,11 @@ export function IntakeForm({ onComplete }: IntakeFormProps) {
   const [formData, setFormData] = useState<IntakeFormData>(EMPTY_FORM);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    return () => { mountedRef.current = false; };
+  }, []);
 
   const handleNext = () => {
     if (step < TOTAL_STEPS) setStep(s => s + 1);
@@ -55,16 +60,26 @@ export function IntakeForm({ onComplete }: IntakeFormProps) {
   const handleSubmit = async () => {
     setIsLoading(true);
     setError(null);
+
+    // Safety net: if everything hangs past 95s, fall back to demo data
+    const safetyTimer = setTimeout(() => {
+      if (mountedRef.current) {
+        setIsLoading(false);
+        setError('Taking too long — showing demo data instead.');
+      }
+      onComplete(DEMO_RESULT);
+    }, 95_000);
+
     try {
       const result = await callClaudeAPI(formData);
+      clearTimeout(safetyTimer);
       onComplete(result);
     } catch {
-      setError('Something went wrong. Using demo data instead.');
-      // Retry with fallback
-      const { DEMO_RESULT } = await import('../../lib/claude');
+      clearTimeout(safetyTimer);
       onComplete(DEMO_RESULT);
     } finally {
-      setIsLoading(false);
+      clearTimeout(safetyTimer);
+      if (mountedRef.current) setIsLoading(false);
     }
   };
 

@@ -61,8 +61,8 @@ export function IntakeForm({ onComplete }: IntakeFormProps) {
     } catch {
       setError('Something went wrong. Using demo data instead.');
       // Retry with fallback
-      const { DEMO_FALLBACK } = await import('../../lib/claude');
-      onComplete(DEMO_FALLBACK);
+      const { DEMO_RESULT } = await import('../../lib/claude');
+      onComplete(DEMO_RESULT);
     } finally {
       setIsLoading(false);
     }

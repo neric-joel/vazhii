@@ -209,6 +209,23 @@ Every Claude API call is governed by 8 hard-coded safeguards that override all o
 
 ---
 
+## Ethical Design Principles
+
+Beyond the 8 rule-based safeguards, Vazhi is designed around these principles:
+
+| Principle | How it's applied |
+|-----------|-----------------|
+| **Navigator, not counselor** | Every result includes a confidence level, source URL, and "verify with" contact — users always know where to go next |
+| **Trauma-informed language** | No shame, no blame — "here's where things stand and here's what to do next." Low scores never use the word "low." |
+| **Financial aid before academics** | Money surfaces first in every section — Pell, ETV, and the Tuition Waiver are the headline, not a footnote |
+| **Privacy by design** | No accounts, no data stored, privacy banner on every page. Sensitive fields (housing, income) are never echoed in outputs |
+| **Graceful uncertainty** | Results labeled "Confirmed eligible," "Very likely eligible," or "Check with your caseworker" — never false precision |
+| **Human handoff built in** | PDF export is designed to be brought to a real caseworker — the footer says "Verify all information with the contacts listed" |
+| **"I'd rather not say" is first-class** | Sensitive intake questions have an opt-out; skipping a field applies neutral defaults, never a score penalty |
+| **Demo fallback per section** | If any API call fails, a realistic demo response loads — the app never crashes or shows a broken state |
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -221,23 +238,27 @@ Every Claude API call is governed by 8 hard-coded safeguards that override all o
 | Deploy | Vercel (serverless functions + static hosting) |
 | Testing | Playwright (Python) |
 
-**No database. No auth.** In production, Claude calls go through `api/assess.ts` — a Vercel serverless function that holds the API key server-side. In local development, `VITE_CLAUDE_API_KEY` in `.env` triggers direct browser calls instead. All user data stays in the browser tab and is cleared on page close.
+**No database. No auth. No data stored.** All Claude API calls route through a Vercel serverless proxy (`/api/assess`) — the API key never touches the browser or the client bundle. User data stays in the browser tab and is never persisted. Local development uses a direct browser shortcut (see Local Development below).
 
 ---
 
 ## V3 Architecture
 
 ```
-User → Intake Form (5 fields, no API call)
+User → Intake Form (6 steps, no API call)
             ↓ instant navigation
        /dashboard?tab=overview
+            ↓
+    Vercel Serverless Proxy (/api/assess) ← CLAUDE_API_KEY server-side only
+            ↓
+    Claude API (focused system prompt + AZ knowledge base embedded)
             ↓
     ┌──────────────────────────────────────────────────────────────┐
     │  Tab 1: Overview (auto-fires)                                │
     │  ↓ fetchOverview() — 2,500 tokens                           │
     │  Returns: readiness scores + slim program list + key_insight │
     └──────────────────────────────────────────────────────────────┘
-            ↓ (user clicks CTA on each tab)
+            ↓ (user clicks CTA on each tab — each fires its own call)
     ┌──────────────┬──────────────┬──────────────┬────────────────┐
     │ Tab 2        │ Tab 3        │ Tab 4        │ Tab 5          │
     │ Funding      │ Schools      │ Action Plan  │ Roadmap        │
@@ -279,7 +300,7 @@ api/
 src/
 ├── components/
 │   ├── intake/
-│   │   ├── IntakeForm.tsx          # 5-step form (no API call — just collects data)
+│   │   ├── IntakeForm.tsx          # 6-step form (no API call — just collects data)
 │   │   ├── StepIndicator.tsx       # Progress bar
 │   │   └── fields/                 # AgeState, EducationGoal, Timeline, Documents, Benefits
 │   ├── dashboard/
@@ -353,7 +374,7 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173).
 
-**How routing works locally:** If `VITE_CLAUDE_API_KEY` is set in `.env`, the app calls the Claude API directly from the browser (no serverless function needed). If it's not set, the app falls back to demo data on every tab — the full dashboard experience works without a key.
+**How routing works locally:** If `VITE_CLAUDE_API_KEY` is set in `.env`, the app uses a local dev shortcut — calling Claude directly (bypassing the serverless proxy). This shortcut only applies when running `npm run dev` locally and never affects production. If no key is set, the app falls back to demo data on every tab — the full dashboard experience works without a key.
 
 **In production (Vercel):** API calls go through `api/assess.ts`. Set `CLAUDE_API_KEY` (no `VITE_` prefix) in Vercel project settings → Environment Variables.
 

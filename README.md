@@ -4,7 +4,7 @@
 
 **Live demo:** [vazhii.vercel.app](https://vazhii.vercel.app)
 
-Vazhi is an AI-powered college readiness tool built for foster youth aging out of the Arizona system. Answer 6 quick questions, and Vazhi uses Claude to generate a personalized readiness snapshot, matched funding programs, school recommendations, a sequenced action plan, and a semester-by-semester roadmap — all in your browser. No account. No data stored.
+Vazhi is an AI-powered college readiness tool built for foster youth aging out of the Arizona system. Answer 6 quick questions, and Vazhi uses Claude to generate a personalized readiness snapshot, matched funding programs, school recommendations, a sequenced action plan, and a semester-by-semester roadmap — in a private browser session with no account and no saved data.
 
 ---
 
@@ -53,8 +53,8 @@ The Overview tab fires automatically when you reach the dashboard. While you rea
 
 **What it returns:**
 - **Key Insight** — one sentence summarizing the most important thing for this person right now
-- **Readiness Snapshot** — 4 animated score rings:
-  - **Overall** (0–100) — weighted composite
+- **Readiness Snapshot** — 5 animated score rings: 1 composite Overall score + 4 sub-scores:
+  - **Overall** (0–100) — weighted composite of all dimensions
   - **Academic** — GED/diploma status, transcript situation
   - **Financial Aid** — documents needed for FAFSA, ETV, tuition waiver
   - **Application** — how close to submission-ready

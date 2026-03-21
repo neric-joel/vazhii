@@ -18,7 +18,7 @@ Beyond money, they face compounding barriers:
 - Deadlines that expire while navigating housing instability
 - No one person who knows all the programs and how they stack
 
-Vazhi is that person — available 24/7, in plain language, at no cost.
+Vazhi bridges that gap — helping users arrive at their first caseworker meeting with a plan already in hand.
 
 ---
 
@@ -129,7 +129,7 @@ Shows optional contextual questions (caseworker status, housing situation, incom
 - **Specific action** — one concrete thing to do
 - **Where to go + what to bring** — exact office/portal + what to carry
 - **Estimated time** — realistic duration ("~45 minutes at the MVD")
-- **Confidence** — `certain` / `high` / `verify`
+- **Confidence** — `Confirmed eligible` / `Very likely eligible` / `Check with your caseworker`
 - **Source URL** — direct link
 
 **Interactive scoring:** Each step has a checkbox. Checking it instantly applies pre-calculated score deltas to all 4 score rings — no second API call. Deltas are integers baked into the response (e.g. completing "Get State ID" adds +5 Application, +3 Financial Aid).
@@ -371,7 +371,7 @@ playwright install chromium
 # V3 full tab test — 21 checks
 # Tests: homepage, Try Demo (all 5 tabs), real intake instant nav,
 # Overview skeleton, Overview API call, Funding SectionIntro, Roadmap gate
-python scripts/with_server.py --server "npm run dev" --port 5173 -- python test_v3_tabs.py
+python scripts/with_server.py --server "npm run dev" --port 5173 -- python tests/test_v3_tabs.py
 ```
 
 **What the V3 test verifies:**

@@ -39,7 +39,7 @@ export function BackgroundPaths() {
             d={path.d}
             stroke="#0F6E56"
             strokeWidth={path.w}
-            strokeOpacity={0.13 + path.id * 0.012}
+            strokeOpacity={0.28 + path.id * 0.018}
             strokeLinecap="round"
             initial={{ pathLength: 0.3, opacity: 0.6 }}
             animate={{

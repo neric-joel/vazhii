@@ -35,7 +35,7 @@ export default function HeroAscii({ onDemo }: HeroAsciiProps) {
         {/* Logo */}
         <Link
           to="/"
-          aria-label="Vazhi home"
+          aria-label="Path Forward home"
           style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}
         >
           <span
@@ -47,8 +47,7 @@ export default function HeroAscii({ onDemo }: HeroAsciiProps) {
               letterSpacing: '-0.01em',
             }}
           >
-            VAZHI{' '}
-            <span style={{ color: '#0F6E56' }}>வழி</span>
+            Path <span style={{ color: '#0F6E56' }}>Forward</span>
           </span>
         </Link>
 

@@ -87,7 +87,7 @@ async function callAPI(
 
     if (!response.ok) {
       const errorBody = await response.text();
-      console.warn(`[Vazhi] API HTTP ${response.status}:`, errorBody.slice(0, 200));
+      console.warn(`[PathForward] API HTTP ${response.status}:`, errorBody.slice(0, 200));
       throw new Error(`Claude API error ${response.status}`);
     }
 
@@ -107,14 +107,14 @@ function parseJSON<T>(raw: string, section: string): T {
     .trim();
 
   if (!cleaned.endsWith('}')) {
-    console.warn(`[Vazhi] ${section}: response may be truncated. Last 80 chars:`, cleaned.slice(-80));
+    console.warn(`[PathForward] ${section}: response may be truncated. Last 80 chars:`, cleaned.slice(-80));
   }
 
   try {
     return JSON.parse(cleaned) as T;
   } catch (err) {
-    console.error(`[Vazhi] ${section}: JSON.parse failed.`, err);
-    console.error(`[Vazhi] ${section}: First 300 chars:`, cleaned.slice(0, 300));
+    console.error(`[PathForward] ${section}: JSON.parse failed.`, err);
+    console.error(`[PathForward] ${section}: First 300 chars:`, cleaned.slice(0, 300));
     throw err;
   }
 }
@@ -129,16 +129,16 @@ function hasAccess(): boolean {
 /** Tab 1 — auto-fires on intake submit. Returns scores + slim programs + key_insight. */
 export async function fetchOverview(intakeData: IntakeFormData): Promise<OverviewResult> {
   if (!hasAccess()) {
-    console.warn('[Vazhi] No API access — overview demo fallback.');
+    console.warn('[PathForward] No API access — overview demo fallback.');
     return DEMO_OVERVIEW;
   }
   try {
     const raw = await callAPI(buildOverviewPrompt(), intakeData, 2500);
     const result = parseJSON<OverviewResult>(raw, 'Overview');
-    console.log('[Vazhi] Overview succeeded.');
+    console.log('[PathForward] Overview succeeded.');
     return result;
   } catch (err) {
-    console.error('[Vazhi] Overview failed — demo fallback:', err);
+    console.error('[PathForward] Overview failed — demo fallback:', err);
     return DEMO_OVERVIEW;
   }
 }
@@ -146,16 +146,16 @@ export async function fetchOverview(intakeData: IntakeFormData): Promise<Overvie
 /** Tab 2 — on-demand. Returns full matched_programs with all fields. */
 export async function fetchFinancialAid(intakeData: IntakeFormData): Promise<FinancialAidResult> {
   if (!hasAccess()) {
-    console.warn('[Vazhi] No API access — financial demo fallback.');
+    console.warn('[PathForward] No API access — financial demo fallback.');
     return DEMO_FINANCIAL;
   }
   try {
     const raw = await callAPI(buildFinancialPrompt(), intakeData, 2000);
     const result = parseJSON<FinancialAidResult>(raw, 'FinancialAid');
-    console.log('[Vazhi] FinancialAid succeeded.');
+    console.log('[PathForward] FinancialAid succeeded.');
     return result;
   } catch (err) {
-    console.error('[Vazhi] FinancialAid failed — demo fallback:', err);
+    console.error('[PathForward] FinancialAid failed — demo fallback:', err);
     return DEMO_FINANCIAL;
   }
 }
@@ -166,16 +166,16 @@ export async function fetchSchoolMatches(
   prefs?: SchoolPreferences,
 ): Promise<SchoolMatchResult> {
   if (!hasAccess()) {
-    console.warn('[Vazhi] No API access — schools demo fallback.');
+    console.warn('[PathForward] No API access — schools demo fallback.');
     return DEMO_SCHOOLS;
   }
   try {
     const raw = await callAPI(buildSchoolsPrompt(prefs), intakeData, 4000);
     const result = parseJSON<SchoolMatchResult>(raw, 'Schools');
-    console.log('[Vazhi] Schools succeeded.');
+    console.log('[PathForward] Schools succeeded.');
     return result;
   } catch (err) {
-    console.error('[Vazhi] Schools failed — demo fallback:', err);
+    console.error('[PathForward] Schools failed — demo fallback:', err);
     return DEMO_SCHOOLS;
   }
 }
@@ -186,16 +186,16 @@ export async function fetchActionPlan(
   context?: ActionPlanContext,
 ): Promise<ActionPlanResult> {
   if (!hasAccess()) {
-    console.warn('[Vazhi] No API access — action plan demo fallback.');
+    console.warn('[PathForward] No API access — action plan demo fallback.');
     return DEMO_ACTION_PLAN;
   }
   try {
     const raw = await callAPI(buildActionPlanPrompt(context), intakeData, 3000);
     const result = parseJSON<ActionPlanResult>(raw, 'ActionPlan');
-    console.log('[Vazhi] ActionPlan succeeded.');
+    console.log('[PathForward] ActionPlan succeeded.');
     return result;
   } catch (err) {
-    console.error('[Vazhi] ActionPlan failed — demo fallback:', err);
+    console.error('[PathForward] ActionPlan failed — demo fallback:', err);
     return DEMO_ACTION_PLAN;
   }
 }
@@ -207,16 +207,16 @@ export async function fetchRoadmap(
   prefs?: RoadmapPreferences,
 ): Promise<RoadmapResult> {
   if (!hasAccess()) {
-    console.warn('[Vazhi] No API access — roadmap demo fallback.');
+    console.warn('[PathForward] No API access — roadmap demo fallback.');
     return DEMO_ROADMAP;
   }
   try {
     const raw = await callAPI(buildRoadmapPrompt(topSchoolId, prefs), intakeData, 3000);
     const result = parseJSON<RoadmapResult>(raw, 'Roadmap');
-    console.log('[Vazhi] Roadmap succeeded.');
+    console.log('[PathForward] Roadmap succeeded.');
     return result;
   } catch (err) {
-    console.error('[Vazhi] Roadmap failed — demo fallback:', err);
+    console.error('[PathForward] Roadmap failed — demo fallback:', err);
     return DEMO_ROADMAP;
   }
 }

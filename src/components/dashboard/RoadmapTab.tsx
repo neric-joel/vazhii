@@ -5,6 +5,7 @@ import { SemesterRoadmap } from './SemesterRoadmap';
 import { SectionIntro } from './SectionIntro';
 import { TabQuestions } from './TabQuestions';
 import type { TabQuestion } from './TabQuestions';
+import { RoadmapSkeleton } from '../shared/Shimmer';
 
 interface RoadmapTabProps {
   intakeData: IntakeFormData;
@@ -70,25 +71,7 @@ export function RoadmapTab({ intakeData, result, schoolResult, onLoaded }: Roadm
       .finally(() => { setIsLoading(false); });
   };
 
-  if (isLoading) {
-    return (
-      <div className="max-w-6xl mx-auto px-6 py-5 space-y-4">
-        <div className="bg-[#0F6E56]/20 animate-pulse rounded-2xl h-[80px]" />
-        <div className="flex items-center gap-4">
-          {[0, 1, 2, 3].map(i => (
-            <div key={i} className="flex items-center gap-4 flex-1">
-              <div className="w-10 h-10 rounded-full bg-[#E2DED6] animate-pulse flex-shrink-0" />
-              {i < 3 && <div className="flex-1 h-[2px] bg-[#E2DED6] animate-pulse" />}
-            </div>
-          ))}
-        </div>
-        <div className="bg-[#E2DED6] animate-pulse rounded-2xl h-[400px]" />
-        <p className="text-[13px] text-[#5C6B63] text-center" style={{ fontFamily: 'Inter, sans-serif' }}>
-          Mapping your semester roadmap — usually takes 20–30 seconds…
-        </p>
-      </div>
-    );
-  }
+  if (isLoading) return <RoadmapSkeleton />;
 
   // Gate: no school matches yet
   if (!schoolResult) {

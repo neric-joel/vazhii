@@ -16,7 +16,8 @@
       "WebFetch(domain:vazhii.vercel.app)",
       "WebFetch(domain:vercel.com)",
       "Bash(claude config:*)",
-      "Skill(update-config)"
+      "Skill(update-config)",
+      "WebFetch(domain:21st.dev)"
     ]
   }
 }

@@ -62,7 +62,7 @@ export function AgeStateField({ age, state, onChange }: AgeStateFieldProps) {
           </select>
           {state === 'Other' && (
             <p className="mt-2 text-xs text-[#6B6A65]">
-              Vazhi is currently focused on Arizona programs. The assessment will show federal programs available everywhere.
+              Path Forward is currently focused on Arizona programs. The assessment will show federal programs available everywhere.
             </p>
           )}
         </div>

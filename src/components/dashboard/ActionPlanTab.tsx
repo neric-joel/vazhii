@@ -6,6 +6,7 @@ import { SectionIntro } from './SectionIntro';
 import { TabQuestions } from './TabQuestions';
 import type { TabQuestion } from './TabQuestions';
 import { applyAllCompletedDeltas } from '../../lib/score-engine';
+import { ActionPlanSkeleton } from '../shared/Shimmer';
 
 interface ActionPlanTabProps {
   intakeData: IntakeFormData;
@@ -86,20 +87,7 @@ export function ActionPlanTab({ intakeData, result, overviewResult, onLoaded }: 
     });
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className="max-w-6xl mx-auto px-6 py-5 space-y-3">
-        <div className="bg-[#E2DED6] animate-pulse rounded-full h-2 w-full" />
-        <div className="bg-[#E2DED6] animate-pulse rounded-xl h-[60px]" />
-        {[0, 1, 2, 3, 4].map(i => (
-          <div key={i} className="bg-[#E2DED6] animate-pulse rounded-2xl h-[80px]" />
-        ))}
-        <p className="text-[13px] text-[#5C6B63] text-center" style={{ fontFamily: 'Inter, sans-serif' }}>
-          Building your action plan — usually takes 15–20 seconds…
-        </p>
-      </div>
-    );
-  }
+  if (isLoading) return <ActionPlanSkeleton />;
 
   if (!result) {
     return (

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import type { IntakeFormData, OverviewResult, MatchedProgramSummary } from '../../lib/types';
 import { fetchOverview } from '../../lib/claude';
+import { OverviewSkeleton } from '../shared/Shimmer';
 
 interface OverviewTabProps {
   intakeData: IntakeFormData;
@@ -310,31 +311,6 @@ function NextActionsPanel({ programs, onNavigate }: { programs: MatchedProgramSu
   );
 }
 
-// ─── Loading Skeleton ─────────────────────────────────────────────────────────
-
-function LoadingSkeleton() {
-  return (
-    <div className="max-w-6xl mx-auto px-6 py-5 space-y-3">
-      {/* 4 stat cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        {[0, 1, 2, 3].map(i => (
-          <div key={i} className="bg-[#E2DED6] animate-pulse rounded-xl h-24" />
-        ))}
-      </div>
-      {/* 3 panels */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-        {[0, 1, 2].map(i => (
-          <div key={i} className="bg-[#E2DED6] animate-pulse rounded-xl h-44" />
-        ))}
-      </div>
-      {/* Key insight bar */}
-      <div className="bg-[#E2DED6] animate-pulse rounded-xl h-16" />
-      <p className="text-[13px] text-[#5C6B63] text-center" style={{ fontFamily: 'Inter, sans-serif' }}>
-        Analyzing your situation — usually takes 10–20 seconds…
-      </p>
-    </div>
-  );
-}
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
@@ -366,7 +342,7 @@ export function OverviewTab({ intakeData, result, onLoaded }: OverviewTabProps) 
     [setSearchParams]
   );
 
-  if (isLoading) return <LoadingSkeleton />;
+  if (isLoading) return <OverviewSkeleton />;
   if (!result) return null;
 
   // ── Derived values ──────────────────────────────────────────────────────────

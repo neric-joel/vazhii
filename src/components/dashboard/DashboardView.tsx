@@ -74,13 +74,13 @@ export function DashboardView({
     <div className="min-h-screen bg-[#FAFAF7]">
       {/* Header */}
       <div className="bg-white border-b border-[#E2DED6] sticky top-0 z-20">
-        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div>
             <p
               className="font-bold text-[#1A2A22] text-sm tracking-tight"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              Vazhi <span className="text-[#0F6E56]">வழி</span>
+              Path <span className="text-[#0F6E56]">Forward</span>
             </p>
             <p className="text-xs text-[#5C6B63]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Your college readiness plan</p>
           </div>
@@ -150,7 +150,7 @@ export function DashboardView({
       </main>
 
       {/* Footer */}
-      <div className="max-w-4xl mx-auto px-4 py-8 text-center space-y-4">
+      <div className="max-w-6xl mx-auto px-4 py-8 text-center space-y-4">
         {overviewResult && (
           <button
             onClick={handleExport}
@@ -183,7 +183,7 @@ export function DashboardView({
             This plan is a navigation guide, not legal or financial advice.
             Always verify eligibility directly with the programs listed.
           </p>
-          <p className="text-[13px] text-[#5C6B63]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Built for foster youth in Arizona · Vazhi வழி</p>
+          <p className="text-[13px] text-[#5C6B63]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Built for foster youth in Arizona · Path Forward</p>
         </div>
       </div>
     </div>

@@ -61,7 +61,7 @@ export function IntakeForm({ onComplete }: IntakeFormProps) {
         <div className="max-w-lg mx-auto">
           <div className="flex items-center justify-between mb-4">
             <span className="text-[#1C1C1A] font-semibold text-sm" style={{ fontFamily: "'DM Serif Display', serif" }}>
-              Vazhi <span className="text-[#0F6E56]">வழி</span>
+              Path <span className="text-[#0F6E56]">Forward</span>
             </span>
             <span className="text-[#6B6A65] text-xs">Step {step} of {TOTAL_STEPS}</span>
           </div>

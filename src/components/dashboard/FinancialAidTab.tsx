@@ -3,6 +3,7 @@ import type { IntakeFormData, FinancialAidResult } from '../../lib/types';
 import { fetchFinancialAid } from '../../lib/claude';
 import { FinancialAidCards } from './FinancialAidCards';
 import { SectionIntro } from './SectionIntro';
+import { FundingSkeleton } from '../shared/Shimmer';
 
 interface FinancialAidTabProps {
   intakeData: IntakeFormData;
@@ -23,20 +24,7 @@ export function FinancialAidTab({ intakeData, result, onLoaded }: FinancialAidTa
       .finally(() => { setIsLoading(false); });
   };
 
-  if (isLoading) {
-    return (
-      <div className="max-w-6xl mx-auto px-6 py-5 space-y-3">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {[0, 1, 2, 3].map(i => (
-            <div key={i} className="bg-[#E2DED6] animate-pulse rounded-2xl h-[200px]" />
-          ))}
-        </div>
-        <p className="text-[13px] text-[#5C6B63] text-center" style={{ fontFamily: 'Inter, sans-serif' }}>
-          Building your funding details — usually takes 10–15 seconds…
-        </p>
-      </div>
-    );
-  }
+  if (isLoading) return <FundingSkeleton />;
 
   if (!result) {
     return (

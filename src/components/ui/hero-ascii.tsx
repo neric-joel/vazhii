@@ -1,133 +1,9 @@
+import type { CSSProperties } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { BackgroundPaths } from './background-paths';
 
 interface HeroAsciiProps {
   onDemo?: () => void;
-}
-
-// ── Blueprint background SVG (desktop) — animated ────────────────────────────
-function BlueprintBg() {
-  return (
-    <svg
-      viewBox="0 0 1440 900"
-      aria-hidden="true"
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <defs>
-        <style>{`
-          @keyframes ha-sweep {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-          }
-          @keyframes ha-ping {
-            0%   { transform: scale(0.01); opacity: 0.5; }
-            100% { transform: scale(1);    opacity: 0; }
-          }
-          @keyframes ha-breathe {
-            0%, 100% { opacity: 0.55; }
-            50%       { opacity: 1; }
-          }
-          @keyframes ha-dash {
-            from { stroke-dashoffset: 0; }
-            to   { stroke-dashoffset: -120; }
-          }
-          .ha-arm {
-            transform-origin: 1080px 450px;
-            animation: ha-sweep 12s linear infinite;
-          }
-          .ha-ping {
-            transform-origin: 1080px 450px;
-            animation: ha-ping 4s ease-out infinite;
-          }
-          .ha-ping-2 {
-            transform-origin: 1080px 450px;
-            animation: ha-ping 4s ease-out 2s infinite;
-          }
-          .ha-breathe { animation: ha-breathe 3.5s ease-in-out infinite; }
-          .ha-dash    { animation: ha-dash 6s linear infinite; }
-        `}</style>
-
-        <pattern id="ha-grid-sm" width="48" height="48" patternUnits="userSpaceOnUse">
-          <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#0F6E56" strokeWidth="0.4" strokeOpacity="0.1" />
-        </pattern>
-        <pattern id="ha-grid-lg" width="240" height="240" patternUnits="userSpaceOnUse">
-          <path d="M 240 0 L 0 0 0 240" fill="none" stroke="#0F6E56" strokeWidth="0.8" strokeOpacity="0.07" />
-        </pattern>
-
-        {/* Gradient for radar sweep arm — bright at tip, fades toward center */}
-        <linearGradient id="ha-arm-grad" x1="0" y1="1" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="#0F6E56" stopOpacity="0" />
-          <stop offset="60%"  stopColor="#0F6E56" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#0F6E56" stopOpacity="0.5" />
-        </linearGradient>
-
-        {/* Clip to keep ping inside outermost circle */}
-        <clipPath id="ha-clip">
-          <circle cx="1080" cy="450" r="990" />
-        </clipPath>
-      </defs>
-
-      {/* Grids */}
-      <rect width="1440" height="900" fill="url(#ha-grid-sm)" />
-      <rect width="1440" height="900" fill="url(#ha-grid-lg)" />
-
-      {/* Concentric circles */}
-      {[70, 140, 220, 310, 415, 535, 670, 820, 990].map((r, i) => (
-        <circle
-          key={r}
-          cx="1080" cy="450" r={r}
-          fill="none"
-          stroke="#0F6E56"
-          strokeWidth={i === 0 ? 1 : 0.7}
-          strokeOpacity={Math.max(0.04, 0.14 - i * 0.012)}
-        />
-      ))}
-
-      {/* Sonar pings — two offset for continuous feel */}
-      <g clipPath="url(#ha-clip)">
-        <circle className="ha-ping" cx="1080" cy="450" r="420"
-          fill="none" stroke="#0F6E56" strokeWidth="1.5" />
-        <circle className="ha-ping-2" cx="1080" cy="450" r="420"
-          fill="none" stroke="#0F6E56" strokeWidth="1" />
-      </g>
-
-      {/* Rotating radar sweep arm */}
-      <g className="ha-arm" clipPath="url(#ha-clip)">
-        <line x1="1080" y1="450" x2="1080" y2="-60"
-          stroke="url(#ha-arm-grad)" strokeWidth="1.2" />
-        {/* Subtle sector fill trailing the arm */}
-        <path
-          d={`M 1080 450 L 1080 -60 A 510 510 0 0 0 ${1080 - 510 * Math.sin(Math.PI / 18)} ${450 - 510 * Math.cos(Math.PI / 18)} Z`}
-          fill="#0F6E56"
-          fillOpacity="0.018"
-        />
-      </g>
-
-      {/* Crosshair at focal point */}
-      <line x1="1080" y1="380" x2="1080" y2="520" stroke="#0F6E56" strokeWidth="0.8" strokeOpacity="0.22" />
-      <line x1="1010" y1="450" x2="1150" y2="450" stroke="#0F6E56" strokeWidth="0.8" strokeOpacity="0.22" />
-      {/* Pulsing center dot */}
-      <circle cx="1080" cy="450" r="4" fill="none" stroke="#0F6E56" strokeWidth="1" strokeOpacity="0.4" />
-      <circle className="ha-breathe" cx="1080" cy="450" r="2" fill="#0F6E56" fillOpacity="0.7" />
-
-      {/* Tick marks on crosshair */}
-      {[-3, -2, -1, 1, 2, 3].map(n => (
-        <g key={n}>
-          <line x1={1080 + n * 35} y1="446" x2={1080 + n * 35} y2="454" stroke="#0F6E56" strokeWidth="0.5" strokeOpacity="0.25" />
-          <line x1="1076" y1={450 + n * 35} x2="1084" y2={450 + n * 35} stroke="#0F6E56" strokeWidth="0.5" strokeOpacity="0.25" />
-        </g>
-      ))}
-
-      {/* Animated dashed diagonal data line */}
-      <line x1="200" y1="700" x2="900" y2="200"
-        stroke="#0F6E56" strokeWidth="0.6" strokeOpacity="0.08"
-        strokeDasharray="6 10" className="ha-dash" />
-
-      {/* Annotation boxes */}
-      <rect x="1120" y="310" width="52" height="16" fill="none" stroke="#0F6E56" strokeWidth="0.5" strokeOpacity="0.22" />
-      <rect x="960"  y="554" width="52" height="16" fill="none" stroke="#0F6E56" strokeWidth="0.5" strokeOpacity="0.16" />
-    </svg>
-  );
 }
 
 // ── Corner frame accent ───────────────────────────────────────────────────────
@@ -137,7 +13,7 @@ function CornerFrame({
   top?: string; bottom?: string; left?: string; right?: string;
   size?: number; opacity?: number;
 }) {
-  const style: React.CSSProperties = {
+  const style: CSSProperties = {
     position: 'absolute',
     width: size,
     height: size,
@@ -251,13 +127,10 @@ export default function HeroAscii({ onDemo }: HeroAsciiProps) {
           overflow: 'hidden', paddingTop: 52,
         }}
       >
-        {/* Desktop blueprint bg */}
-        <div className="hidden lg:block" style={{ position: 'absolute', inset: 0 }}>
-          <BlueprintBg />
+        {/* Animated background paths — full width, all screen sizes */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }} aria-hidden="true">
+          <BackgroundPaths />
         </div>
-
-        {/* Mobile star-dot bg */}
-        <div className="stars-bg lg:hidden" style={{ position: 'absolute', inset: 0 }} aria-hidden="true" />
 
         {/* Gradient mask (desktop: darkens left side so text is readable) */}
         <div

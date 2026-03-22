@@ -1,232 +1,146 @@
-# Path Forward
-
 <p align="center">
-  <strong>AI-powered college readiness for foster youth in Arizona</strong><br>
-
+  <h1 align="center">Path Forward</h1>
+  <p align="center"><strong>AI-powered college readiness for foster youth aging out of care</strong></p>
+  <p align="center">
+    <a href="https://pathforward-az.vercel.app">🔗 Live Demo</a> ·
+    <a href="https://youtu.be/YOUR_VIDEO_ID">🎥 Demo Video</a> ·
+    <a href="https://github.com/neric-joel/path-forward">💻 GitHub</a>
+  </p>
+  <p align="center">
+    <img src="https://img.shields.io/badge/React_18-61DAFB?style=flat&logo=react&logoColor=black" />
+    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" />
+    <img src="https://img.shields.io/badge/Claude_API-191919?style=flat&logo=anthropic&logoColor=white" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white" />
+    <img src="https://img.shields.io/badge/Deployed_on_Vercel-000?style=flat&logo=vercel&logoColor=white" />
+  </p>
+  <p align="center"><em>HackASU 2026 · Track 3: Economic Empowerment & Education</em></p>
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=white" alt="React 18">
-  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
-  <img src="https://img.shields.io/badge/Claude_API-Sonnet_4.6-D97706?style=flat" alt="Claude API">
-  <img src="https://img.shields.io/badge/Deployed-Vercel-000000?style=flat&logo=vercel&logoColor=white" alt="Vercel">
-  <img src="https://img.shields.io/badge/License-MIT-0F6E56?style=flat" alt="MIT License">
-</p>
+---
+
+## 15,000+ foster youth age out every year. Less than 3% get a college degree.
+
+The money exists — Pell Grants, tuition waivers, training vouchers — up to **$24,790/year** in Arizona alone. But the system is so fragmented that most eligible youth never claim it.
+
+**Path Forward** fixes the navigation problem. Answer 6 questions → get a personalized plan with matched funding, school recommendations, a sequenced action plan, and a semester roadmap. Download the PDF. Bring it to your caseworker.
+
+No account. No data stored. Everything runs in your browser.
 
 ---
 
-## What is Path Forward?
+## Demo
 
-800 foster youth age out of the Arizona system every year. Most leave $12,000+ in college funding on the table — not because they're ineligible, but because the system is too complex to navigate alone.
+> **[Try it live →](https://pathforward-az.vercel.app)**
 
-Path Forward is a 2-minute AI assessment that builds a personalized college readiness plan: which programs you qualify for, what to do first, which schools fit your situation, and a semester-by-semester roadmap — all in one place, for free.
-
-**Everything runs in your browser. No account. No data stored. No tracking.**
-
----
-
-## Live Demo
-
-**[pathforward-az.vercel.app](https://pathforward-az.vercel.app)** — Try Demo mode for an instant preview with sample data, no API key needed.
+<!-- Add screenshots here - replace with actual screenshot URLs after taking them -->
+<!-- ![Landing Page](screenshots/landing.png) -->
+<!-- ![Dashboard Overview](screenshots/dashboard.png) -->
+<!-- ![Action Plan](screenshots/action-plan.png) -->
 
 ---
 
-## Features
+## How It Works
+6 Questions → Claude AI → 5-Tab Personalized Dashboard → PDF Export
 
-### Intake Form (6 steps, ~2 minutes)
-- Age + state with live eligibility warnings (age 22+ Tuition Waiver alert)
-- Education goal selector with auto-advance on tap
-- Timeline status (still in care / just aged out / 3–12 months / over a year)
-- Planned start semester (Summer 2026 through Fall 2027)
-- Documents checklist (ID, SSN, birth certificate, diploma, transcripts, foster care proof)
-- Benefits already applied for (FAFSA, ETV, Tuition Waiver, AHCCCS)
+**Intake** — Age, education goal, timeline, documents, benefits. 2 minutes.
 
-### Dashboard (5 tabs, lazy-loaded per section)
+**Dashboard** — 5 tabs, each powered by a focused Claude API call:
+- **Overview** — Readiness score, funding snapshot, next actions
+- **Funding** — Matched programs with eligibility confidence, deadlines, source links
+- **Schools** — Top 3 matches with cost breakdowns (tuition → grants stacked → out-of-pocket)
+- **Action Plan** — Sequenced steps with dependency chains. Check them off, scores update instantly.
+- **Roadmap** — Semester-by-semester timeline for your chosen school
 
-**Overview** — Auto-fires on submit
-- Readiness score rings: Overall, Academic, Financial Aid, Application, Timeline
-- Key insight panel personalized to your situation
-- Funding summary showing matched programs
+**PDF** — Professional export designed for a caseworker meeting.
 
-**Funding** — On-demand with pre-generation questions
-- Full matched program cards: Pell Grant ($7,395), Arizona ETV ($5,000), Tuition Waiver, AHCCCS
-- Confidence levels (Confirmed eligible / Very likely / Needs verification)
-- Deadlines, next actions, source URLs, verify contacts on every card
+---
 
-**Schools** — On-demand with location + priority questions
-- 3 matched Arizona schools with full cost waterfall
-- Tuition → Pell Grant → Tuition Waiver → ETV → estimated out-of-pocket
-- Foster youth support programs, housing options, fit labels
+## Why AI (and not just a website)
 
-**Action Plan** — Auto-generates on tab click
-- Sequenced steps with document checklists per step
-- Score delta indicators showing what each step improves
-- Checkable completion with live score updates (no extra API call)
+A static site can list programs. It can't:
+- Cross-reference 6+ programs with **interdependent** eligibility rules per person
+- Sequence action steps where Step 3 depends on Step 1 being done first
+- Calculate how grants **stack** differently at each school
+- Pre-compute score changes for each action ("completing FAFSA unlocks Steps 3 and 5")
 
-**Roadmap** — On-demand with school picker + attendance questions
-- Semester-by-semester plan from today to graduation
-- Phase breakdown: Preparation → First Semester → Academic Year → Graduation
-- Cost per phase with funding applied per semester
+The full Arizona program database is embedded in every Claude prompt — no vector DB, no retrieval step.
 
-### PDF Export
-- Cover page with generated sections list
-- All sections as formatted autoTable tables
-- Header + footer + page numbers on every page
-- Saves as `path-forward-college-plan.pdf`
+---
 
-### Demo Mode
-- Full dashboard with sample data — no API key needed
-- Available from "Try Demo" on the landing page
-- Per-section fallback if any live API call fails
+## Ethical Safeguards
+
+8 hard-coded rules in every API call:
+
+1. No false eligibility — confidence levels on everything
+2. No discouraging language — scores below 40 lead with strengths
+3. No false cost precision — housing as ranges, tuition labeled estimated vs confirmed
+4. No overconfident rankings — "Strong match" not #1/#2/#3
+5. No false urgency — deadlines include a helper contact, not panic
+6. No missing options — always notes the Tuition Waiver works at ALL AZ public schools
+7. Privacy on shared devices — sensitive fields never echoed in outputs
+8. "I'd rather not say" — opt-out on every sensitive question, no penalty
+
+Zero data stored. No accounts. No tracking. Privacy banner on every page.
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend framework | React 18 + TypeScript + Vite |
-| Styling | Tailwind CSS v4 |
-| Routing | React Router v6 |
-| AI | Claude claude-sonnet-4-6 via Anthropic API |
-| Serverless proxy | Vercel Functions (`api/assess.ts`) |
-| PDF generation | jsPDF + jspdf-autotable |
-| Fonts | Space Grotesk · Inter · IBM Plex Mono |
-| Deployment | Vercel |
+| | |
+|---|---|
+| **Frontend** | React 18 · TypeScript · Tailwind CSS · shadcn/ui |
+| **AI** | Claude API (claude-sonnet-4-20250514) via Vercel serverless proxy |
+| **PDF** | jsPDF + jspdf-autotable |
+| **Deploy** | Vercel (serverless functions + static) |
+
+API key lives server-side in `api/assess.ts` — never touches the browser.
 
 ---
 
 ## Architecture
+```
+Intake (6 steps, no API call)
+↓
+Vercel Proxy (/api/assess) ← API key server-side
+↓
+┌────────┬────────┬────────┬────────┬────────┐
+│Overview│Funding │Schools │Action  │Roadmap │
+│auto    │on-click│on-click│on-click│gated   │
+└────────┴────────┴────────┴────────┴────────┘
+↓
+Dashboard → Score Updates (client-side) → PDF
+```
 
-```
-Browser (React + TypeScript)
-  │
-  ├── Intake Form (6 steps — no API calls, pure UI)
-  │
-  └── Dashboard (5 tabs, results cached in App.tsx state)
-       │
-       ├── Overview Tab ──── auto-fires on submit (~2k tokens)
-       ├── Funding Tab ────── on-demand + questions (~1.5k tokens)
-       ├── Schools Tab ────── on-demand + questions (~3k tokens)
-       ├── Action Plan Tab ── auto-generates on tab click (~2k tokens)
-       └── Roadmap Tab ────── on-demand + school picker (~2k tokens)
-              │
-              ▼
-       POST /api/assess  (Vercel serverless — CLAUDE_API_KEY server-side only)
-              │
-              ▼
-       Claude claude-sonnet-4-6  →  structured JSON response
-              │
-              ▼
-       Per-section result cached — tab switches are instant
-       Each section fails independently with demo data fallback
-```
+5 independent API calls (2K-4K tokens each) instead of one monolithic request. Each tab loads in 10-20s, fails independently, caches results.
 
 ---
 
-## Getting Started
-
-### Prerequisites
-- Node.js 18+
-- An Anthropic API key ([console.anthropic.com](https://console.anthropic.com))
-
-### Installation
-
+## Run Locally
 ```bash
 git clone https://github.com/neric-joel/path-forward.git
 cd path-forward
 npm install
+echo "VITE_CLAUDE_API_KEY=your_key" > .env
+npm run dev
 ```
 
-### Environment
-
-```bash
-# .env.local (never committed — for local dev only)
-VITE_CLAUDE_API_KEY=sk-ant-api...
-```
-
-For Vercel production, set `CLAUDE_API_KEY` in the dashboard (server-side only, not prefixed with `VITE_`).
-
-### Run
-
-```bash
-npm run dev      # http://localhost:5173
-npm run build    # production build
-npm run preview  # preview production build locally
-```
+No API key? Full demo mode works out of the box.
 
 ---
 
-## Ethical Design
+## What's Next
 
-8 safeguards are embedded into every AI prompt and response:
-
-| # | Safeguard | Implementation |
-|---|-----------|---------------|
-| 1 | **Wrong Eligibility** | `confidence: "verify"` on unconfirmable claims. Source URL + verify contact on every card. |
-| 2 | **Discouraging Language** | Prompts lead with strengths. "Low" is banned. All score framing is constructive. |
-| 3 | **False Cost Certainty** | Housing costs are ranges, labeled as estimates. No false precision. |
-| 4 | **Overconfident Rankings** | Schools get `fit_label` (Strong / Good / Worth exploring), never a raw score ranking. |
-| 5 | **False Urgency** | Urgent items point to a specific person + phone number, not a panic message. |
-| 6 | **Missing Options** | Every response includes `other_options_note` acknowledging programs not shown. |
-| 7 | **Shared Device Privacy** | Housing + income answers excluded from all visible summaries and PDF exports. |
-| 8 | **"I'd Rather Not Say"** | Sensitive questions have this as a first-class option. Zero plan quality penalty applied. |
-
----
-
-## Project Structure
-
-```
-vazhi/
-├── api/
-│   └── assess.ts                    # Vercel serverless proxy
-├── src/
-│   ├── components/
-│   │   ├── intake/                  # IntakeForm + 6 field components
-│   │   ├── dashboard/               # DashboardView + 5 tab components
-│   │   │   └── TabQuestionScreen.tsx  # Pre-generation question UI
-│   │   ├── shared/                  # TabLoader, AnalyzingScreen, Shimmer
-│   │   └── ui/                      # HeroAscii, BackgroundPaths
-│   ├── lib/
-│   │   ├── prompts/                 # Per-section Claude prompts
-│   │   ├── claude.ts                # API fetch functions + dual routing
-│   │   ├── demo-data.ts             # Per-section demo data
-│   │   ├── pdf-export.ts            # jsPDF + autoTable
-│   │   ├── score-engine.ts          # Client-side score delta calculation
-│   │   └── types.ts                 # Shared TypeScript interfaces
-│   └── pages/
-│       ├── Home.tsx
-│       ├── Intake.tsx
-│       └── Dashboard.tsx
-└── vercel.json                      # SPA rewrites + /api/ passthrough
-```
-
----
-
-## Hackathon
-
-**HackASU 2026** — March 20–22, 2026
-**Track 3: Economic Empowerment & Education**
-
-Path Forward was built in 72 hours to demonstrate how AI can make complex government benefit systems navigable for vulnerable populations — without requiring technical literacy, a personal data account, or a caseworker appointment.
+- **Spanish language support** — 30%+ of AZ foster youth are Spanish-speaking
+- **Expand to California and Texas** — same architecture, new JSON knowledge base
+- **Document upload** — parse case plans, auto-fill intake
+- **Campus coordinator dashboard** — caseworkers track student progress
 
 ---
 
 ## Team
 
-Built at HackASU 2026.
+**Neric Joel** — Full-stack development, AI integration, ethical design
 
 ---
 
-## License
-
-MIT — free to use, adapt, and deploy for any foster youth support organization.
-
----
-
-<p align="center">
-  <a href="https://pathforward-az.vercel.app">Live Demo</a> ·
-  <a href="https://github.com/neric-joel/path-forward">GitHub</a> ·
-  Built for foster youth in Arizona
-</p>
+<p align="center"><strong>Path Forward</strong> — Your path to college starts here.</p>

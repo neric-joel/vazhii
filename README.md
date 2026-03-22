@@ -2,7 +2,7 @@
 
 <p align="center">
   <strong>AI-powered college readiness for foster youth in Arizona</strong><br>
-  <em>வழி (vazhi) — "path" in Tamil</em>
+
 </p>
 
 <p align="center">
